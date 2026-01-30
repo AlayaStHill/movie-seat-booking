@@ -1,0 +1,16 @@
+.container {
+  height: calc(100vh - 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 1200px;
+}
+
+.createButton {
+  display: flex;
+  align-self: flex-end;
+  padding: 0.7rem 1.2rem;
+}

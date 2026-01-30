@@ -1,0 +1,51 @@
+.button {
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #fff;
+  color:black;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transform-origin: center;
+  gap: 0.5rem;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(0.98);
+  filter: brightness(0.92);
+}
+
+.disabled:hover,
+.disabled:active {
+  transform: none;
+  filter: none;
+}
+
+.destructive {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+.primary {
+  background-color: #6feaf6;
+}
+
+.secondary {
+  background-color: #fff;
+}
+
+.disabled {
+  background-color: gray;
+  color: rgb(47, 46, 46);
+  cursor: auto;
+}
