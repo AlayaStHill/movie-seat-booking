@@ -83,7 +83,8 @@ Applikationen använder ett lokalt REST-API via JSON Server med resurserna:
 – Skapa, uppdatera och ta bort av filmer  
 – Lagra bokningar  
 
-
+## Backend API
+https://github.com/AlayaStHill/movie-seat-book-api
 
   
 
