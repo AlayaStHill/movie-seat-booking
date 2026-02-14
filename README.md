@@ -1,13 +1,23 @@
-Movie Seat Booking App
+# Movie Seat Booking App
 
 Detta projekt är en webbapplikation för bokning av bioplatser, skapad som en del av utbildningen Webbutvecklare .NET (Nackademin), kursen Frontend 2. Syftet med applikationen är att tillämpa moderna frontend-principer i React med komponentbaserad arkitektur, state-hantering och kommunikation med ett REST-API.
 
 Applikationen låter användaren välja film, markera platser i en biosalong och genomföra en bokning. Projektet innehåller även en admin-del där filmer kan administreras. Arbetet uppfyller både G- och VG-krav enligt kursens instruktioner.
 
-Innehåll  
+## Screenshots
+### Booking page
+![Booking page](screenshots/booking-page.png)
+
+### Admin page
+![Admin page](screenshots/admin-page.png)
+
+### Create movie modal
+![Create movie modal](screenshots/admin-create-modal.png)
+
+## Innehåll  
 Applikationen består av följande delar:
 
-Bokningssida
+### Bokningssida
 – Val av film via dropdown  
 – Visning av biosalong med platser  
 – Möjlighet att välja och avmarkera lediga platser  
@@ -15,13 +25,12 @@ Bokningssida
 – Dynamisk uppdatering av antal valda platser och totalpris  
 – Bokningsknapp som öppnar formulär  
 
-Bokningsformulär
+### Bokningsformulär
 – Inmatning av namn och telefonnummer  
 – Validering i JavaScript med feedback till användaren  
 – Skickar bokning till API och sparar i JSON-server  
 
-
-Admin-del
+### Admin-del
 – Lista alla filmer  
 – Skapa nya filmer  
 – Redigera befintliga filmer  
@@ -29,27 +38,26 @@ Admin-del
 – CRUD-operationer mot API  
 – Modaler för create, edit, delete och success 
 
+## Tekniker och verktyg  
 
-Tekniker och verktyg  
-
-Frontend
+### Frontend
 React – Single Page Application (SPA) med Client Side Rendering (CSR)  
 JavaScript (ES6+)  
 CSS Modules – komponentbaserad styling  
 React Router – navigation mellan boknings- och admin-sidor  
 
-Backend (lokalt)
+### Backend (lokalt)
 JSON Server – REST-API för filmer och bokningar  
 
-Övrigt
+### Övrigt
 Vite – utvecklingsserver och build-verktyg (JSX-transformering och produktion)
 ESLint – kodkvalitet och struktur  
 VS Code – utvecklingsmiljö  
 GitHub Pages – publicering av produktion  
 
-Arkitektur och struktur  
+## Arkitektur och struktur  
 
-Applikationen är uppdelad i:
+### Applikationen är uppdelad i:
 – Pages (MovieSeatBookPage, AdminMoviesPage)  
 – Uppdelning i mindre ansvarsspecifika komponenter för att undvika duplicering och förenkla vidareutveckling (Seat, SeatRow, Seats, ...)  
 – API-anrop hanteras både direkt i komponenter och via separata hjälpfunktioner  
@@ -57,8 +65,7 @@ Applikationen är uppdelad i:
 
 State hanteras huvudsakligen i sidkomponenterna och skickas vidare via props till barnkomponenter. Callback-funktioner används för att hantera användarinteraktioner och uppdatera state uppåt i komponentträdet.
 
-Dataflöde (översikt)
-
+## Dataflöde (översikt)
 – Filmer hämtas från API vid mount  
 – Vald film sparas i state  
 – Platser renderas baserat på aktuell film  
@@ -66,18 +73,24 @@ Dataflöde (översikt)
 – Bokning skickas till API  
 – Efter lyckade åtgärder visas en success-modal som bekräftelse för användaren 
 
-API (JSON Server)
+## Live-demo och datahantering
+Projektet utvecklades ursprungligen med ett lokalt REST-API via JSON Server för filmer och bokningar.
+För att möjliggöra en stabil live-demo via GitHub Pages har applikationen anpassats till en frontend-only-version där filmdata lagras i sessionStorage och seedas vid första laddning.
 
+CRUD-funktionalitet för filmer är fortsatt implementerad, men sker nu mot lokal lagring i webbläsaren. Bokningar demonstreras via bekräftelseflöde utan permanent persistens.
+
+## API (JSON Server)
 Applikationen använder ett lokalt REST-API via JSON Server med resurserna:
 – movies  
 – bookings  
 
-API:t används för att:
+### API:t används för att:
 – Hämta filmer  
 – Skapa, uppdatera och ta bort av filmer  
 – Lagra bokningar  
 
-
+## Backend API
+https://github.com/AlayaStHill/movie-seat-book-api
 
   
 
