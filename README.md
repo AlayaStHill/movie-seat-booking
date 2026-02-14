@@ -78,7 +78,6 @@ Projektet utvecklades ursprungligen med ett lokalt REST-API via JSON Server för
 För att möjliggöra en stabil live-demo via GitHub Pages har applikationen anpassats till en frontend-only-version där filmdata lagras i sessionStorage och seedas vid första laddning.
 
 CRUD-funktionalitet för filmer är fortsatt implementerad, men sker nu mot lokal lagring i webbläsaren. Bokningar demonstreras via bekräftelseflöde utan permanent persistens.
-Den ursprungliga API-baserade implementationen finns dokumenterad i commit-historiken.
 
 ## API (JSON Server)
 Applikationen använder ett lokalt REST-API via JSON Server med resurserna:
