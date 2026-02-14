@@ -10,7 +10,6 @@ import Button from "../../components/button/Button.jsx";
 import Modal from "../../components/modal/Modal.jsx";
 import { useMovies } from "../../hooks/useMovies.js";
 import MovieBookFormModal from "./components/movieBookFormModal/MovieBookFormModal.jsx";
-import { API_URL } from "../../services/api";
 
 const MovieSeatBookPage = () => {
   // initialDataSeats = grundtillståndet
