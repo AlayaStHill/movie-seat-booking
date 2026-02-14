@@ -6,6 +6,7 @@ import MovieFormModal from "./components/movieFormModal/movieFormModal.jsx";
 import ConfirmDeleteMovieModal from "./components/confirmDeleteMovieModal/ConfirmDeleteMovieModal.jsx";
 import Button from "../../components/button/Button.jsx";
 import Modal from "../../components/modal/Modal.jsx";
+import { createMovie, updateMovie, deleteMovie } from "../../storage/moviesStorage";
 
 const AdminMoviesPage = () => {
   const { loadMovies } = useMovies();
@@ -56,72 +57,51 @@ const AdminMoviesPage = () => {
     setChosenMovie(null);
   };
 
-  const handleUpdateMovie = async (values) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/movies/${values.movieId}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: values.movieId,
-            name: values.movieName,
-            price: values.moviePrice,
-          }),
-        },
-      );
-      if (!response.ok) {
-        throw new Error("Kunde inte uppdatera filmen");
-      }
-
-      setDisplay({
-        modal: "success",
-        title: "bekräftelse",
-        successMessage: `Filmen ${values.movieName} har uppdaterats`,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDeleteMovie = (movie) => {
-    fetch(`http://localhost:3000/movies/${movie.id}`, {
-      method: "DELETE",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(movie.id),
+const handleUpdateMovie = async (values) => {
+  try {
+    updateMovie({
+      id: values.movieId,
+      name: values.movieName,
+      price: values.moviePrice,
     });
+
+    setDisplay({
+      modal: "success",
+      title: "Bekräftelse",
+      successMessage: `Filmen ${values.movieName} har uppdaterats`,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleDeleteMovie = async (movie) => {
+  try {
+    deleteMovie(movie.id);
 
     setDisplay({
       modal: "success",
       title: "Bekräftelse",
       successMessage: `Filmen ${movie.name} är borttagen`,
     });
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-  const handleCreateMovie = async (values) => {
-    const newMovie = { name: values.movieName, price: values.moviePrice };
+const handleCreateMovie = async (values) => {
+  try {
+    createMovie({ name: values.movieName, price: values.moviePrice });
 
-    try {
-      const response = await fetch("http://localhost:3000/movies", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newMovie),
-      });
-
-      // till användaren istället?
-      if (!response.ok) {
-        throw new Error("Kunde inte spara film");
-      }
-
-      setDisplay({
-        modal: "success",
-        successMessage: `Filmen ${values.movieName} har lagts till`,
-        title: "Bekräftelse",
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    setDisplay({
+      modal: "success",
+      successMessage: `Filmen ${values.movieName} har lagts till`,
+      title: "Bekräftelse",
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <div className={styles.container}>

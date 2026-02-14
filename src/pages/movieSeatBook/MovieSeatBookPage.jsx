@@ -10,6 +10,7 @@ import Button from "../../components/button/Button.jsx";
 import Modal from "../../components/modal/Modal.jsx";
 import { useMovies } from "../../hooks/useMovies.js";
 import MovieBookFormModal from "./components/movieBookFormModal/MovieBookFormModal.jsx";
+import { API_URL } from "../../services/api";
 
 const MovieSeatBookPage = () => {
   // initialDataSeats = grundtillståndet
@@ -23,14 +24,14 @@ const MovieSeatBookPage = () => {
 
   // useEffect = för sånt som händer utanför rendering. [] = dependency-array, om tom - lyssnar ej på några dependencies och körs endast vid mount.
   useEffect(() => {
-    // hjälpfunktion för att useEffect inte kan vara asynkron 
-     const fetchAndSetMovies = async () => {
+    // hjälpfunktion för att useEffect inte kan vara asynkron
+    const fetchAndSetMovies = async () => {
       const moviesFromDb = await loadMovies();
 
       if (moviesFromDb) {
         setMovies(moviesFromDb);
       }
-    }
+    };
 
     fetchAndSetMovies();
 
@@ -71,14 +72,14 @@ const MovieSeatBookPage = () => {
 
       return newDataSeats;
     });
-  }
+  };
 
   // Ge pris och nollställ stolar och order
   const handleSelectedMovie = (id) => {
     setDataSeats(initialDataSeats);
     setOrder({ amount: 0, totalPrice: 0 });
-    setCurrentMovie(movies.find((movie) => movie.id === id));
-  }
+    setCurrentMovie(movies.find((movie) => Number(movie.id) === Number(id)));
+  };
 
   const handleOpenBookModal = () => {
     if (order.amount === 0 || order.totalPrice === 0) {
@@ -86,30 +87,33 @@ const MovieSeatBookPage = () => {
     }
 
     setDisplayBookingModal(true);
-  }
+  };
 
   const handleBookingSubmit = async (values) => {
-    const bookingRequest = {
-      name: values.name,
-      phone: values.phone,
-      movieId: currentMovie.id,
-      amountOfSeats: order.amount,
-      totalPrice: order.totalPrice,
-    };
-    try {
-      const response = await fetch("http://localhost:3000/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingRequest),
-      });
+    setDisplayBookingSuccess(true);
+    console.log(values);
 
-      if (response.ok) {
-        setDisplayBookingSuccess(true);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    // const bookingRequest = {
+    //   name: values.name,
+    //   phone: values.phone,
+    //   movieId: currentMovie.id,
+    //   amountOfSeats: order.amount,
+    //   totalPrice: order.totalPrice,
+    // };
+    // try {
+    //   const response = await fetch(`${API_URL}/bookings`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(bookingRequest),
+    //   });
+
+    //   if (response.ok) {
+    //     setDisplayBookingSuccess(true);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
 
   const handleBookingReset = () => {
     setDisplayBookingModal(false);
@@ -117,7 +121,7 @@ const MovieSeatBookPage = () => {
     setCurrentMovie(null);
     setDataSeats(initialDataSeats);
     setOrder({ amount: 0, totalPrice: 0 });
-  }
+  };
 
   return (
     <div className={styles.pageLayout}>
@@ -154,6 +158,6 @@ const MovieSeatBookPage = () => {
       ) : null}
     </div>
   );
-}
+};
 
 export default MovieSeatBookPage;
