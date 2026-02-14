@@ -16,7 +16,6 @@ const Input = ({
         type={type}
         id={id}
         value={value}
-        // Vid användning av e.target.value ger alltid en sträng oavsett type
         onChange={(e) =>
           onChange(
             type === "number" && e.target.value.length > 0

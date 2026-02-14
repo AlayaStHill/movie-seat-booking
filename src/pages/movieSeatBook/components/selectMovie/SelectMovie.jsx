@@ -9,9 +9,7 @@ const SelectMovie = ({movies, onSelectedMovie, selectedMovieId}) => {
       <label htmlFor="movie">Välj film:</label>
       <select
         id="movie"
-        // coalescing operator
         value={selectedMovieId ?? ""}
-        // e.target.value = value-attributet på option
         onChange={(e) => onSelectedMovie(e.target.value)}        
       >
         <option value="" disabled>

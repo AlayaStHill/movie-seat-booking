@@ -15,7 +15,6 @@ const AdminMoviesPage = () => {
   const [display, setDisplay] = useState({ modal: "", title: "", successMessage: ""});
 
   useEffect(() => {
-    // för att useEffect inte är async
     const fetchAndSetMovies = async () => {
       const moviesFromDb = await loadMovies();
 
@@ -26,7 +25,6 @@ const AdminMoviesPage = () => {
 
     fetchAndSetMovies();
 
-    // Kör effekten om loadMovies någonsin ändras
   }, [loadMovies, display.successMessage]);
 
   const handleOpenEditModal = (id) => {
@@ -35,9 +33,7 @@ const AdminMoviesPage = () => {
     if (!movieToEdit) {
       return;
     }
-    // Ändra enbart modal för att trigga Edit-Modal, spread resten av properties
     setDisplay({ ...display, modal: "edit" });
-    // originaldata db.json
     setChosenMovie(movieToEdit);
   };
 

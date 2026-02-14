@@ -9,7 +9,6 @@ const Button = ({
   variant,
 }) => {
   return (
-    // children = special props. Motsvarar innehållet mellan öppnings-stängningstag från föräldern
     <button
       type={type}
       disabled={disabled}

@@ -16,7 +16,6 @@ const MovieBookFormModal = ({ onClose, onSubmit }) => {
     const isValidPhone = validatePhone();
 
     if (isValidName === true && isValidPhone === true) {
-      // packar in i objekt eftersom skickar flera värden --> ett argument skickas
       onSubmit({ name, phone });
     }
   };

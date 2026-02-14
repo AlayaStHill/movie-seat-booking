@@ -12,7 +12,6 @@ import { useMovies } from "../../hooks/useMovies.js";
 import MovieBookFormModal from "./components/movieBookFormModal/MovieBookFormModal.jsx";
 
 const MovieSeatBookPage = () => {
-  // initialDataSeats = grundtillståndet
   const [dataSeats, setDataSeats] = useState(initialDataSeats);
   const [order, setOrder] = useState({ amount: 0, totalPrice: 0 });
   const [currentMovie, setCurrentMovie] = useState(null);
@@ -21,9 +20,7 @@ const MovieSeatBookPage = () => {
   const [displayBookingSuccess, setDisplayBookingSuccess] = useState(false);
   const { loadMovies } = useMovies();
 
-  // useEffect = för sånt som händer utanför rendering. [] = dependency-array, om tom - lyssnar ej på några dependencies och körs endast vid mount.
   useEffect(() => {
-    // hjälpfunktion för att useEffect inte kan vara asynkron
     const fetchAndSetMovies = async () => {
       const moviesFromDb = await loadMovies();
 
@@ -34,15 +31,12 @@ const MovieSeatBookPage = () => {
 
     fetchAndSetMovies();
 
-    // Kör om effekten om loadMovies ändras
   }, [loadMovies]);
 
   const handleSelectedSeat = (id) => {
     if (currentMovie === null) {
       return;
     }
-    // prev.. inbyggd parameter för det aktuella statet - nödvändigt här?
-    // immutabel uppdatering av arrayen (initialData.. oförändrad). Skapar en ny array där det matchande objektet helt byts ut och får rätt status.
     setDataSeats((prevDataSeats) => {
       const newDataSeats = prevDataSeats.map((dataSeat) => {
         if (dataSeat.id !== id) {
@@ -53,7 +47,6 @@ const MovieSeatBookPage = () => {
           return dataSeat;
         }
 
-        //ternary-operators + spread-operator som skapar ett nytt objekt och skriver över status (togglar - om "selected" -> "")
         return {
           ...dataSeat,
           status: dataSeat.status === "" ? "selected" : "",
@@ -73,7 +66,6 @@ const MovieSeatBookPage = () => {
     });
   };
 
-  // Ge pris och nollställ stolar och order
   const handleSelectedMovie = (id) => {
     setDataSeats(initialDataSeats);
     setOrder({ amount: 0, totalPrice: 0 });

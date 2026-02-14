@@ -1,6 +1,5 @@
 import styles from "./Modal.module.css";
 
-// lägger en position:fixed komponent ovanpå sidan med index-z
 const Modal = ({className, title, onClose, children}) => {
   return (
     <div className={styles.overlay}>
